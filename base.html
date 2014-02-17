@@ -7,7 +7,7 @@
     {% set bodyclass = 'dark' %}
   {% endif%}
   
-  <body class=" {{ page.id }} {{ bodyclass }}">
+  <body class="{{ page.id }} {{ bodyclass }}">
     
     {% block wrapper_before %}
     {% endblock %}
@@ -15,20 +15,21 @@
     <div id="wrapper">
       {% block header_before %}
       {% endblock %}
+      
       {% block header %}
-        {% include 'partials/_header.html' %}
       {% endblock %}
+      
       {% block header_after %}
-        <hr>
       {% endblock %}
       
       <a href="#content" class="sr-only">Skip to Content</a>
       
       {% block navigation_before %}
       {% endblock %}
+      
       {% block navigation %}
-        {% include 'partials/_navigation.html' with { 'id': 'primary' } %}
       {% endblock %}
+      
       {% block navigation_after %}
       {% endblock %}
       
@@ -42,31 +43,6 @@
         
           <section id="main">
             {% block main %}
-            
-              {% block title %}
-                {% if page.title %}
-                  <h1>
-                    {{ page.title }}
-                    {% if page.description %}
-                    <small>{{ page.description }}</small>
-                    {% endif %}
-                  </h1>
-                {% endif %}
-              {% endblock %}
-              
-              {% block title_after %}
-              {% endblock %}
-              
-              {{ page.content }}
-              
-              {% block main_tail %}
-                {% if page.nolist != true %}
-                  <nav class="category">
-                    {% include 'partials/listing/category.html' %}
-                  </nav>
-                {% endif %}
-              {% endblock %}
-
             {% endblock %}
           </section>
   
@@ -91,7 +67,8 @@
     {% block footer_before %}
     {% endblock %}
     
-    {% include 'partials/_footer.html' %}
+    {% block footer %}
+    {% endblock %}    
     
     {% block footer_after %}
     <!-- <code class="debug">{{ _context|json_encode() }}</code> -->

@@ -1,7 +1,57 @@
 {% extends "base.html" %}
 
+{% block header_after %}
+  <hr>
+{% endblock %}
+
+{% block header %}
+  {% include 'partials/_header.html' %}
+{% endblock %}
+
+{% block navigation %}
+  {% include 'partials/_navigation.html' with { 'id': 'primary' } %}
+{% endblock %}
+
+{% block main %}
+
+  {% block title %}
+    {% if page.title %}
+      <h1>
+        {{ page.title }}
+        {% if page.page_description %}
+          {% set description = page.page_description %}
+        {% endif %}
+        {% if page.subtitle is defined %}
+          {% set description = page.subtitle %}
+        {% endif %}
+        {% if description %}
+        <small>{{ description }}</small>
+        {% endif %}
+      </h1>
+    {% endif %}
+  {% endblock %}
+  
+  {% block title_after %}
+  {% endblock %}
+  
+  {{ page.content }}
+  
+  {% block main_tail %}
+    {% if page.nolist != true %}
+      <nav class="category">
+        {% include 'partials/listing/category.html' %}
+      </nav>
+    {% endif %}
+  {% endblock %}
+
+{% endblock %}
+
 {% block container_after %}
   <script src="{{ page.root_path }}/public/docs/js/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
 {% endblock %}
 
+
+{% block footer %}
+  {% include 'partials/_footer.html' %}
+{% endblock %}    
 
