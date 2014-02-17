@@ -3,7 +3,6 @@
   
   {% include 'partials/_head.html' %}
   
-  <!-- <code>{{ _context|json_encode(constant('JSON_PRETTY_PRINT')) }}</code> -->
   {% if page.query.dark is defined %}
     {% set bodyclass = 'dark' %}
   {% endif%}
@@ -97,6 +96,7 @@
     {% include 'partials/_footer.html' %}
     
     {% block footer_after %}
+    <!-- <code class="debug">{{ _context|json_encode() }}</code> -->
     {% endblock %}
       
   </body>
